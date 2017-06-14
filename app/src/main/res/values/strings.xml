@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">MyUMengTest</string>
+
+    <string name="umeng_update_content">版本号：6.4.4\n1.twitter不安装客户端也可以进行分享\n2.facebook不安装客户端也可以进行分享\n3.新浪精简版，修复部分rom不能唤起客户端问题\n4.增加新浪微博linkcard的功能\n5.修改微信精简版分享小程序的相关bug，以及对微信的版本做了适配兼容</string>
+    <string name="umeng_home_title">U-Share产品Demo</string>
+    <string name="umeng_home_update">新版更新内容</string>
+    <string name="umeng_share_title">分享</string>
+    <string name="umeng_auth_title">授权</string>
+    <string name="umeng_delauth_title">删除授权</string>
+    <string name="umeng_getinfo_title">获取用户信息</string>
+    <string name="umeng_check_title">自检工具</string>
+    <string name="umeng_menu_title">分享菜单模板</string>
+
+    <string name="umeng_check_sign">检查签名</string>
+    <string name="umeng_check_sina">检查新浪</string>
+    <string name="umeng_check_wx">检查微信</string>
+    <string name="umeng_check_alipay">检查支付宝</string>
+    <string name="umeng_check_qq">检查qq</string>
+    <string name="umeng_check_fb">检查facebook</string>
+    <string name="umeng_check_vk">vkontakte</string>
+    <string name="umeng_choose_style">选择分享类型</string>
+
+    <string name="umeng_sharebutton_copy">复制文本</string>
+    <string name="umeng_sharebutton_copyurl">复制连接</string>
+</resources>

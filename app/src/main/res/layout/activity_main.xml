@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.test.myumengtest.MainActivity">
+
+    <TextView
+        android:gravity="center"
+        android:background="#55ff0000"
+        android:layout_margin="5dp"
+        android:id="@+id/tvGoToShare"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="goToShare" />
+
+    <!-- 还需要布局文件 socialize_share_menu_item.xml -->
+    <TextView
+        android:gravity="center"
+        android:layout_margin="5dp"
+        android:background="#5500ff00"
+        android:id="@+id/tvUmengShareBoard"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="打开友盟的分享面板，要添加jar包" />
+</LinearLayout>
