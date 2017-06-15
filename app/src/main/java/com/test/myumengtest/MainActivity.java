@@ -55,9 +55,11 @@ public class MainActivity extends AppCompatActivity {
                         .setDisplayList(SHARE_MEDIA.ALIPAY,SHARE_MEDIA.SMS,SHARE_MEDIA.WEIXIN)
                          // 增加自定义分享按钮
                         .addButton("umeng_sharebutton_custom","umeng_sharebutton_custom","info_icon_1","info_icon_1")
-                        .addButton("stringValue2","定义2","ic_launcher","瞎写的2")
-                        .addButton("stringValue3","定义3","瞎写的3","ic_launcher")
-                        .setCallback(umShareListener).open(config); // 这里可以添加一个 config 参数
+                        .addButton("stringValue2","stringValue2","ic_launcher","瞎写的2")
+                        .addButton("stringValue3","stringValue3","瞎写的3","ic_launcher")
+//                        .setCallback(umShareListener)
+                        .setShareboardclickCallback(shareBoardlistener)
+                        .open(config); // 这里可以添加一个 config 参数
             }
         });
     }
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         config.setMenuItemBackgroundColor(Color.parseColor("#550000ff"));
         config.setMenuItemBackgroundShape(ShareBoardConfig.BG_SHAPE_CIRCULAR);
 
-         /*//  设置分享面板消失监听
+         //  设置分享面板消失监听
         config.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -87,9 +89,10 @@ public class MainActivity extends AppCompatActivity {
         shareAction.setShareboardclickCallback(new ShareBoardlistener() {
             @Override
             public void onclick(SnsPlatform snsPlatform, SHARE_MEDIA share_media) {
+
                 Toast.makeText(MainActivity.this,"点击分享面板了",Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
 
 //        shareAction.open(config);
     }
@@ -146,6 +149,28 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onCancel(SHARE_MEDIA share_media) {
             Toast.makeText(MainActivity.this,share_media + " 分享取消了", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private ShareBoardlistener shareBoardlistener = new  ShareBoardlistener() {
+
+        @Override
+        public void onclick(SnsPlatform snsPlatform,SHARE_MEDIA share_media) {
+            if (share_media==null){
+                if (snsPlatform.mKeyword.equals("stringValue2")){
+                    Toast.makeText(MainActivity.this,"add stringValue2_btn success",Toast.LENGTH_SHORT).show();
+                }else if (snsPlatform.mKeyword.equals("stringValue3")){
+                    Toast.makeText(MainActivity.this,"add stringValue3_btn success",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+            else {
+                new ShareAction(MainActivity.this)
+                        .setPlatform(share_media)
+                        .setCallback(umShareListener)
+                        .withText("多平台分享")
+                        .share();
+            }
         }
     };
 
