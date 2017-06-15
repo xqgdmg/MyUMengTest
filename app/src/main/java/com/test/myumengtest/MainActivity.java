@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                         .setDisplayList(SHARE_MEDIA.ALIPAY,SHARE_MEDIA.SMS,SHARE_MEDIA.WEIXIN)
                          // 增加自定义分享按钮
                         .addButton("umeng_sharebutton_custom","umeng_sharebutton_custom","info_icon_1","info_icon_1")
+                        .addButton("stringValue2","定义2","ic_launcher","瞎写的2")
+                        .addButton("stringValue3","定义3","瞎写的3","ic_launcher")
                         .setCallback(umShareListener).open(config); // 这里可以添加一个 config 参数
             }
         });

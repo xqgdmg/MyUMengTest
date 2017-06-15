@@ -22,4 +22,8 @@
 
     <string name="umeng_sharebutton_copy">复制文本</string>
     <string name="umeng_sharebutton_copyurl">复制连接</string>
+
+    <!-- 自定义按钮的名称 -->
+    <string name="stringValue3">我是String里面的文字3</string>
+    <string name="stringValue2">我是String里面的文字2</string>
 </resources>
