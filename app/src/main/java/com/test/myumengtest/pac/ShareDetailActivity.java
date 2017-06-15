@@ -39,6 +39,7 @@ import java.util.ArrayList;
 
 /**
  * Created by wangfei on 16/11/10.
+ * 第二步，分享内容的列表（纯文本，出图片本地，纯图片http，链接，音乐，视频。。。。。。）
  */
 public class ShareDetailActivity extends Activity {
     private ListView listView;
@@ -55,20 +56,24 @@ public class ShareDetailActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(getResources().getColor(R.color.umeng_blue));
-
-        }
         setContentView(R.layout.share_detail);
+
         share_media = (SHARE_MEDIA) getIntent().getSerializableExtra("platform");
-        listView = (ListView) findViewById(R.id.list);
+
+        initView();
+
         initStyles(share_media);
+
         initMedia();
+
+    }
+
+    private void initView() {
+        listView = (ListView) findViewById(R.id.list);
         dialog = new ProgressDialog(this);
         shareAdapter  = new ShareTypeAdapter(this,styles);
         listView.setAdapter(shareAdapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -94,7 +99,7 @@ public class ShareDetailActivity extends Activity {
                         ||styles.get(position).equals(StyleUtil.WEB10)
                         ||styles.get(position).equals(StyleUtil.WEB01)){
                     new ShareAction(ShareDetailActivity.this)
-                           .withText(Defaultcontent.text)
+                            .withText(Defaultcontent.text)
                             .withMedia(web)
                             .setPlatform(share_media)
                             .setCallback(shareListener).share();
@@ -107,8 +112,8 @@ public class ShareDetailActivity extends Activity {
                             .setCallback(shareListener).share();
                 }else if (styles.get(position).equals(StyleUtil.VIDEO11)
                         ||styles.get(position).equals(StyleUtil.VIDEO00)
-                ||styles.get(position).equals(StyleUtil.VIDEO01)
-                ||styles.get(position).equals(StyleUtil.VIDEO10)){
+                        ||styles.get(position).equals(StyleUtil.VIDEO01)
+                        ||styles.get(position).equals(StyleUtil.VIDEO10)){
                     new ShareAction(ShareDetailActivity.this).withMedia(video)
                             .setPlatform(share_media)
                             .setCallback(shareListener).share();
@@ -132,13 +137,14 @@ public class ShareDetailActivity extends Activity {
                     umMin.setPath("pages/page10007/page10007");
                     umMin.setUserName("gh_3ac2059ac66f");
                     new ShareAction(ShareDetailActivity.this)
-                         .withMedia(umMin)
+                            .withMedia(umMin)
                             .setPlatform(share_media)
                             .setCallback(shareListener).share();
                 }
             }
         });
     }
+
     private UMShareListener shareListener = new UMShareListener() {
         @Override
         public void onStart(SHARE_MEDIA platform) {
@@ -283,16 +289,10 @@ public class ShareDetailActivity extends Activity {
             styles.add(StyleUtil.MUSIC11);
             styles.add(StyleUtil.VIDEO11);
         }else if (share_media == SHARE_MEDIA.LAIWANG){
-
-//            styles.add(StyleUtil.IMAGELOCAL);
-//            styles.add(StyleUtil.IMAGEURL);
             styles.add(StyleUtil.WEB11);
             styles.add(StyleUtil.MUSIC11);
             styles.add(StyleUtil.VIDEO11);
         }else if (share_media == SHARE_MEDIA.LAIWANG_DYNAMIC){
-//
-//            styles.add(StyleUtil.IMAGELOCAL);
-//            styles.add(StyleUtil.IMAGEURL);
             styles.add(StyleUtil.WEB11);
             styles.add(StyleUtil.MUSIC11);
             styles.add(StyleUtil.VIDEO11);
@@ -338,7 +338,6 @@ public class ShareDetailActivity extends Activity {
             styles.add(StyleUtil.IMAGEURL);
             styles.add(StyleUtil.TEXTANDIMAGE);
         }else if (share_media == SHARE_MEDIA.FLICKR){
-
             styles.add(StyleUtil.IMAGELOCAL);
             styles.add(StyleUtil.IMAGEURL);
 
@@ -384,7 +383,6 @@ public class ShareDetailActivity extends Activity {
         umImageMark.setMarkBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.umsocial_defaultwatermark));
         imageurl = new UMImage(this,Defaultcontent.imageurl);
         imageurl.setThumb(new UMImage(this, R.drawable.thumb));
-       // imagelocal = new UMImage(this,R.drawable.logo,umImageMark);
         imagelocal = new UMImage(this,R.drawable.datu);
         imagelocal.setThumb(new UMImage(this, R.drawable.thumb));
         music = new UMusic(Defaultcontent.musicurl);
@@ -434,6 +432,9 @@ public class ShareDetailActivity extends Activity {
         listView.clearFocus();
     }
 
+    /*
+     * onActivityResult
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

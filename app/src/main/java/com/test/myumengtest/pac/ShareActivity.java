@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Chris on 2017/6/14.
+ * 第一步，分享的列表（微信，支付宝，短信。。。。）
  */
 public class ShareActivity extends Activity {
     private ListView listView;
@@ -31,15 +32,16 @@ public class ShareActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(getResources().getColor(R.color.umeng_blue));
-
-        }
         setContentView(R.layout.umeng_share);
-        listView = (ListView) findViewById(R.id.list);
+
+        initView();
+
         initPlatforms();
+
+    }
+
+    private void initView() {
+        listView = (ListView) findViewById(R.id.list);
         shareAdapter  = new ShareAdapter(this,platforms);
         listView.setAdapter(shareAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -50,8 +52,8 @@ public class ShareActivity extends Activity {
                 ShareActivity.this.startActivity(intent);
             }
         });
-
     }
+
     private void initPlatforms(){
         platforms.clear();
         platforms.add(SHARE_MEDIA.WEIXIN.toSnsPlatform());
