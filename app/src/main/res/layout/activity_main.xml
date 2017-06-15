@@ -13,7 +13,7 @@
         android:id="@+id/tvGoToShare"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="goToShare" />
+        android:text="自己写分享界面，调用分享的方法" />
 
     <!-- 还需要布局文件 socialize_share_menu_item.xml -->
     <TextView
@@ -23,5 +23,5 @@
         android:id="@+id/tvUmengShareBoard"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="打开友盟的分享面板，要添加jar包" />
+        android:text="打开友盟的分享面板，要添加jar包和layout" />
 </LinearLayout>
